@@ -37,7 +37,7 @@ framework, so every stage is explicit and testable on its own.
 ## Roadmap
 
 - [x] Project skeleton, health checks, CI
-- [ ] Ingestion: PDF upload, text extracted and stored per page
+- [x] Ingestion: PDF upload, text extracted and stored per page
 - [ ] Chunking with overlap, page numbers preserved
 - [ ] Embeddings and vector search with pgvector
 - [ ] Answers from Claude with page citations, streamed over SSE

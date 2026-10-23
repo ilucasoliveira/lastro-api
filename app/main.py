@@ -8,6 +8,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.config import settings
 from app.models.database import get_db
+from app.routers import documents
 
 DESCRIPTION = """Ask questions about Brazilian financial regulation (Pix, bank fees,
 consumer rights) and get answers grounded in the official documents.
@@ -73,3 +74,6 @@ async def readiness_check(db: AsyncSession = Depends(get_db)) -> JSONResponse:
         {"status": "ok" if ready else "degraded", "database": database},
         status_code=200 if ready else 503,
     )
+
+
+app.include_router(documents.router)
