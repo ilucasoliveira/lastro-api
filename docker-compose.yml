@@ -1,0 +1,27 @@
+services:
+  db:
+    # The official Postgres image plus the pgvector extension. Vectors live in
+    # the same database as the documents they came from, so a search result
+    # and its source page are one join apart instead of two systems apart.
+    image: pgvector/pgvector:pg18
+    container_name: lastro-db
+    restart: unless-stopped
+    ports:
+      # 5433 is taken by MySoundPrint, so both projects can run side by side.
+      - "5434:5432"
+    volumes:
+      # Postgres 18 moved PGDATA to /var/lib/postgresql/18/docker, so the
+      # parent directory is what has to be persisted.
+      - pgdata:/var/lib/postgresql
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  pgdata:

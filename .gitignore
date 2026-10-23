@@ -1,0 +1,38 @@
+# Secrets
+.env
+.env.local
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+.Python
+build/
+dist/
+*.egg-info/
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Poetry
+# poetry.lock is intentionally NOT ignored, it must be committed
+
+# Tests and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Source documents are public but large, and anyone can download them again
+# with scripts/download_corpus.py. The repository keeps the list, not the PDFs.
+data/raw/
+
+# Personal study notes, kept out of the public repository.
+GUIA.md
+
+# Editor settings are personal, not part of the project.
+.vscode/
